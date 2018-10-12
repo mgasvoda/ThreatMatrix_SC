@@ -8,6 +8,12 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 
 //object Acled extends DataFetcher{
 object Acled {
+  /*
+  NOTE - THIS IMPLENTATION IS NOT SECURE
+  I've temporarily bypassed SSL verification due to an issue with certificate verfication caused by issues on my work
+  machine. As long as this implementation is in place, the data is vulnerable to man in the middle attacks and should be
+  handled with care.
+   */
   val spark: SparkSession = SparkSession.builder.appName("Simple Application").master("local[2]").getOrCreate()
 
   def fetchData(): DataFrame = {
