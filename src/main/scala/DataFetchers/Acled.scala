@@ -6,11 +6,10 @@ import java.security.cert.X509Certificate
 import javax.net.ssl._
 import org.apache.spark.sql.{DataFrame, SparkSession}
 
-//object Acled extends DataFetcher{
 object Acled {
   /*
-  NOTE - THIS IMPLENTATION IS NOT SECURE
-  I've temporarily bypassed SSL verification due to an issue with certificate verfication caused by issues on my work
+  NOTE - THIS IMPLEMENTATION IS NOT SECURE
+  I've temporarily bypassed SSL verification due to an issue with certificate verification caused by issues on my work
   machine. As long as this implementation is in place, the data is vulnerable to man in the middle attacks and should be
   handled with care.
    */
@@ -24,8 +23,7 @@ object Acled {
     val completeUrl = baseUrl + filters
 
     fetchUrl(completeUrl)
-    val df = parseData()
-    df.show()
+    parseData()
   }
 
   // Bypasses both client and server validation.
@@ -59,6 +57,5 @@ object Acled {
   def parseData(): DataFrame = {
 
     spark.read.format("csv").option("header", "true").load("tempdata.csv")
-    //    val list = rawData.split("\n").filter(_ != "")
   }
 }

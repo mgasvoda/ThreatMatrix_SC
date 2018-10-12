@@ -1,7 +1,17 @@
 package gui
 
+import scala.swing._
+
 class UI extends MainFrame {
-  title = "GUI Progam 1"
+  title = "GUI Program 1"
   preferredSize = new Dimension(320, 240)
-  contents = new label("Here is the contents!")
+  contents = new Label("Here is the contents!")
+}
+
+object GuiProgramOne {
+  def main(args: Array[String]): Unit = {
+    val ui = new UI
+    ui.visible = true
+    println("End of main function")
+  }
 }
